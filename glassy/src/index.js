@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
+
+import {
+    Header,
+    Hero,
+} from './components'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <h1 className="bg-red">geel</h1>
+    <Header />
+    <Hero/>
   </React.StrictMode>
 );
 
