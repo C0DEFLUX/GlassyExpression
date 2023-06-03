@@ -6,13 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import {
     Header,
     Hero,
+    About,
+    ProjectSlider,
 } from './components'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
         <Header />
-        <Hero/>
+        <Hero />
+        <About />
+        <ProjectSlider />
   </React.StrictMode>
 );
 
