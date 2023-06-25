@@ -3,6 +3,7 @@ import Header from './Header'
 import Hero from './en/Hero'
 import About from './en/About'
 import Slider from './en/ProjectSlider'
+import Footer from './en/Footer'
 
 function EnglishComponent() {
 
@@ -12,6 +13,7 @@ function EnglishComponent() {
             <Hero/>
             <About/>
             <Slider/>
+            <Footer/>
         </>
     )
 

@@ -11,42 +11,33 @@ import chevLeft from '../../assets/img/chev_left.svg';
 
 function ProjectSlider () {
 
-        const sliderRef = useRef(null);
+    const showBtn = document.getElementById('showDialog')
+    const dialog = document.getElementById('dialog')
 
-        const handlePrev = useCallback(() => {
-            if (!sliderRef.current) return;
-            sliderRef.current.swiper.slidePrev();
-        }, []);
-
-        const handleNext = useCallback(() => {
-            if (!sliderRef.current) return;
-            sliderRef.current.swiper.slideNext();
-        }, []);
-
-
-
+    showBtn.addEventListener('click', () => {
+        dialog.showModal()
+    })
 
     return (
-        <section className="flex flex-col items-center p-2">
+        <section id="work" className="flex flex-col items-center p-2">
             <div className="container flex flex-col min-h-[90vh] gap-12 lg:mt-20">
                 <h2 className="text-5xl text-center font-medium">Mūsu Projekti</h2>
                 <div className="slider-wrapper">
                     <Swiper
                         className="sample-slider"
-                        ref={sliderRef}
                         spaceBetween={60}
                         slidesPerView={3}
                         pagination={{ clickable: true }}
                         loop={true}
                         dynamicBullets={false}
                         navigation={true}
-                        autoplay={{
-                            "delay": 2000,
-                            "disableOnInteraction": false,
-                            "pauseOnMouseEnter": true,
-                            "stopOnLastSlide": false,
-                            "waitForTransition": true
-                        }}
+                        // autoplay={{
+                        //     "delay": 2000,
+                        //     "disableOnInteraction": false,
+                        //     "pauseOnMouseEnter": true,
+                        //     "stopOnLastSlide": false,
+                        //     "waitForTransition": true
+                        // }}
                         modules={[Autoplay, Navigation, Pagination]}
 
                         breakpoints={{
@@ -70,32 +61,35 @@ function ProjectSlider () {
                             },
                         }}
                     >
-                        <SwiperSlide className="bg-red-500">
+                        <SwiperSlide className="bg-red-200">
+                            <div id="showDialog" className="h-[65vh]">
+
+                            </div>
+                            <dialog id="dialog">
+                                asd
+                            </dialog>
+                        </SwiperSlide>
+                        <SwiperSlide className="bg-red-200">
                             <div className="h-[65vh]">
                                 asd
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
+                        <SwiperSlide className="bg-red-200">
                             <div className="h-[65vh]">
                                 asd
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
+                        <SwiperSlide className="bg-red-200">
                             <div className="h-[65vh]">
                                 asd
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
+                        <SwiperSlide className="bg-red-200">
                             <div className="h-[65vh]">
                                 asd
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
+                        <SwiperSlide className="bg-red-200">
                             <div className="h-[65vh]">
                                 asd
                             </div>

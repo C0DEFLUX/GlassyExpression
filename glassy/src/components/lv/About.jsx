@@ -5,7 +5,7 @@ import AboutImg from '../../assets/img/about_img.jpg'
 function About() {
 
     return (
-        <section className="flex flex-col items-center">
+        <section id="about" className="flex flex-col items-center">
             <div className="container min-h-screen flex pt-20 flex-wrap">
                 <div className="about-text-wrapper flex flex-col gap-10 w-full lg:w-1/2 lg:mt-20">
                     <h2 className="text-5xl font-medium lg:mb-8">Mazliet par mums</h2>

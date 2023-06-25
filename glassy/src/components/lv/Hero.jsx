@@ -10,8 +10,8 @@ function Hero() {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center flex flex-col gap-8">
                 <h1 className="text-4xl font-semibold lg:text-6xl">Stikla kapakmeņi un memoriāļi</h1>
                 <div className="flex justify-center gap-8">
-                    <button className="px-8 py-3 bg-white text-black hover:bg-neutral-200">Projekti</button>
-                    <button className="px-8 py-3 bg-white text-black hover:bg-neutral-200">Kontakti</button>
+                    <a href="#work"><button className="px-8 py-3 bg-white text-black hover:bg-neutral-200">Projekti</button></a>
+                    <a href="#contact"><button className="px-8 py-3 bg-white text-black hover:bg-neutral-200">Kontakti</button></a>
                 </div>
             </div>
         </div>
