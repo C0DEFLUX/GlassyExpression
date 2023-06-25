@@ -1,15 +1,7 @@
 // Component exports
 
+export {default as EnglishComponent} from './EnglishComponent'
+export {default as LatvianComponent} from './LatvianComponent'
+export {default as RussianComponent} from './RussianComponent'
 
-// Header export
-export { default as Header } from './Header';
-
-
-//Main exports
-
-//Hero export
-export { default as Hero } from './Hero';
-//About export
-export { default as About } from './About';
-//Project slider export
-export { default as ProjectSlider } from './ProjectSlider';
+export {default as NotFoundComponent} from './NotFoundComponent'
