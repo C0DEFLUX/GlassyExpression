@@ -16,18 +16,18 @@ function HomeProductTable() {
                         <th className="px-4 py-4 text-start">Pievienošanas Datums</th>
                     </tr>
                     <tr className="bg-neutral-100 text-[#485B69] hover:bg-neutral-300 hover:text-black">
-                        <td className="px-4 py-1 text-start">dogs</td>
-                        <td className="px-4 py-1 text-start"><img className="h-[10rem] object-contain max-w-[10rem] sm:max-w-full" src={Img} alt=""/></td>
+                        <td className="px-4 py-1 md:py-4 text-start">dogs</td>
+                        <td className="px-4 py-2 text-start"><img className="h-[9rem] object-contain max-w-[10rem] sm:max-w-full" src={Img} alt=""/></td>
                         <td className="px-4 py-1 text-start">dogs</td>
                     </tr>
                     <tr className="bg-neutral-200  text-[#485B69] hover:bg-neutral-300 hover:text-black">
-                        <td className="px-4 py-2 text-start">Dog</td>
-                        <td className="px-4 py-2 text-start"><img className="h-[10rem] object-contain max-w-[10rem] sm:max-w-full" src={Img} alt=""/></td>
-                        <td className="px-4 py-2 text-start">dogs</td>
+                        <td className="px-4 py-1 text-start">Dog</td>
+                        <td className="px-4 py-2 text-start"><img className="h-[9rem] object-contain max-w-[10rem] sm:max-w-full" src={Img} alt=""/></td>
+                        <td className="px-4 py-1 text-start">dogs</td>
                     </tr>
                     <tr className="bg-neutral-100 text-[#485B69] hover:bg-neutral-300 hover:text-black">
                         <td className="px-4 py-1 text-start">dogs</td>
-                        <td className="px-4 py-1 text-start"><img className="h-[10rem] object-contain max-w-[10rem] sm:max-w-full" src={Img} alt=""/></td>
+                        <td className="px-4 py-2 text-start"><img className="h-[9rem] object-contain max-w-[10rem] sm:max-w-full" src={Img} alt=""/></td>
                         <td className="px-4 py-1 text-start">dogs</td>
                     </tr>
                 </table>
