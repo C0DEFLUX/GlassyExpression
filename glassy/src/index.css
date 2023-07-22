@@ -3,7 +3,100 @@ html, * {
     font-family: 'Poppins', sans-serif;
 }
 
+h1 {
+    font-weight: 500 !important;
+}
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /*Admin style*/
+    .admin-btn {
+        @apply px-6 py-2 bg-blue-400 text-white rounded transition duration-200 hover:bg-blue-500
+    }
+    .admin-nav-btn {
+        @apply text-white flex items-center gap-4 p-2 rounded-md transition duration-200 hover:bg-white hover:text-blue-400
+    }
+    /*Main style*/
+    .hero-btn {
+        @apply px-8 py-3 bg-white text-black rounded transition duration-200 hover:bg-neutral-200
+    }
+}
+
+
+
+
+
+
+
+/*Admin loader style*/
+.lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-grid div {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #00B4D8;
+    animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+    top: 32px;
+    left: 8px;
+    animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+    top: 32px;
+    left: 32px;
+    animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+    top: 32px;
+    left: 56px;
+    animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+    top: 56px;
+    left: 8px;
+    animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+    top: 56px;
+    left: 32px;
+    animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+    top: 56px;
+    left: 56px;
+    animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}

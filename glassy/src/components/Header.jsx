@@ -4,8 +4,6 @@ import Fb from '../assets/img/fb_icon.svg'
 import Ig from '../assets/img/ig_icon.svg'
 import {useLocation, useNavigate} from "react-router-dom";
 
-
-
 function Header() {
 
     const history = useNavigate()
@@ -26,7 +24,7 @@ function Header() {
 
 
     return (
-        <header className="absolute top-0 left-0 z-40 min-h-[6rem] w-full flex justify-between items-center px-28 bg-white text-black">
+        <header className="absolute top-0 left-0 z-20 min-h-[6rem] w-full flex justify-between items-center px-28 bg-white text-black">
             <div className="flex gap-8">
                 <div className="nav-logo">
                     <img className="h-[60px]" src={Logo} alt="GlassyExpression Logo"/>

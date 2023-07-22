@@ -4,8 +4,7 @@ import 'swiper/css';
 import {Autoplay, Navigation, Pagination} from "swiper";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import chevRight from '../../assets/img/chev_right.svg';
-import chevLeft from '../../assets/img/chev_left.svg';
+
 
 
 
