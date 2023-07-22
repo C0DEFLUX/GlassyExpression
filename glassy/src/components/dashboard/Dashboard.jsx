@@ -1,8 +1,7 @@
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import HomeProductTable from "./HomeProductTable";
-import AdminMainHeader from "./AdminMainHeader";
-import AdminSmallHeader from "./AdminSmallHeader";
+import AdminHeader from "./AdminHeader";
 
 
 
@@ -47,14 +46,13 @@ function Dashboard() {
 
     return (
         <>
-            <AdminMainHeader/>
             <div id='admin-loader' className="w-full min-h-screen bg-white flex justify-center items-center absolute top-0 left-0 z-50">
                 <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
-            <div className="admin-contanier ml-[20rem] min-h-screen bg-[#F5F5F5] overflow-hidden">
+            <div className="admin-contanier min-h-screen bg-[#F5F5F5] overflow-hidden md:ml-[20rem]">
                 <div className="min-h-screen flex flex-col">
-                    <AdminSmallHeader/>
-                    <div className="admin-container-content w-full flex-grow p-4 flex">
+                    <AdminHeader/>
+                    <div className="admin-container-content w-full flex-grow p-2 lg:p-4 flex">
                         <HomeProductTable/>
                     </div>
                 </div>
