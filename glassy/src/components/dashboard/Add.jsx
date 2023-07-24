@@ -77,6 +77,7 @@ function Add() {
                                     onChange={(e) => setProductTitle(e.target.value)}
                                     placeholder="Produkta nosaukums"
                                 />
+                                <span id="prodTitleErr"></span>
                                 <input
                                     type="file"
                                     name="image"
@@ -84,7 +85,7 @@ function Add() {
                                     onChange={e => handleChange(e.target.files)}
                                     placeholder="Produkta nosaukums"
                                 />
-
+                                <span id="mainImgErr"></span>
                                 <button type="submit" className="admin-btn" onClick={submitData}>Send</button>
                             </form>
 
