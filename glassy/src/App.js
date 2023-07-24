@@ -6,7 +6,7 @@ import {
     NotFoundComponent,
     RussianComponent,
     Dashboard,
-    Add
+    Add, Delete
 } from "./components";
 import React from "react";
 
@@ -21,6 +21,7 @@ function App() {
                 <Route path="/admin" element={<Admin/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="/dashboard/add" element={<Add/>}/>
+                <Route path="/dashboard/delete" element={<Delete/>}/>
                 <Route path="*" element={<NotFoundComponent/>}/>
             </Routes>
         </Router>
