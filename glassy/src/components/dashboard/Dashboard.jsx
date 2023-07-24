@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import HomeProductTable from "./HomeProductTable";
+import HomeProductTable from "./tables/HomeProductTable";
 import AdminHeader from "./AdminHeader";
 
 

@@ -1,7 +1,8 @@
-import Img from "../../assets/img/hero.jpg";
 import {useEffect, useState} from "react";
+import {HiOutlineCog8Tooth} from "react-icons/hi2";
+import {BiTrash} from "react-icons/bi";
 
-function HomeProductTable() {
+function DeleteProductTable() {
 
     const [data, setData] = useState([])
 
@@ -15,7 +16,7 @@ function HomeProductTable() {
     return (
         <div className="admin-content-tabel-wrapper bg-white shadow w-full flex-grow rounded-md p-2 lg:p-4">
             <div className="admin-content-table-head mb-8">
-                <h1 className="text-xl text-[#485B69]">Produktu saraksts</h1>
+                <h1 className="text-xl text-[#485B69]">Dzēst produktus</h1>
             </div>
             <div className="admin-content-table h-[75vh] overflow-scroll rounded-md">
                 <table className="w-full font-light rounded-md">
@@ -23,6 +24,7 @@ function HomeProductTable() {
                         <th className="px-4 py-4 text-start">Prokuts</th>
                         <th className="px-4 py-4 text-start">Produkta Titula Bilde</th>
                         <th className="px-4 py-4 text-start">Pievienošanas Datums</th>
+                        <th className="text-2xl"><HiOutlineCog8Tooth/></th>
                     </tr>
                     {data.map((item) => (
                         <tr key={item.id} className="bg-neutral-100 text-[#485B69] hover:bg-neutral-200 hover:text-black">
@@ -31,6 +33,7 @@ function HomeProductTable() {
                                 <img className="h-[9rem] object-contain max-w-[10rem] sm:max-w-full" src={item.main_img} alt=""/>
                             </td>
                             <td className="px-4 py-1 text-start">{item.created_at}</td>
+                            <td className="text-2xl"><BiTrash className="hover:text-red-600 cursor-pointer"/></td>
                         </tr>
                     ))}
                 </table>
@@ -39,4 +42,4 @@ function HomeProductTable() {
     )
 }
 
-export default HomeProductTable;
+export default DeleteProductTable;
