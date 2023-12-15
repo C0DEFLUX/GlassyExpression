@@ -20,7 +20,7 @@ function HomeProductTable() {
             <div className="admin-content-table h-[75vh] overflow-scroll rounded-md">
                 <table className="w-full font-light rounded-md">
                     <tr className="bg-blue-400 text-white">
-                        <th className="px-4 py-4 text-start">Prokuts</th>
+                        <th className="px-4 py-4 text-start">Produkts</th>
                         <th className="px-4 py-4 text-start">Produkta Titula Bilde</th>
                         <th className="px-4 py-4 text-start">Pievienošanas Datums</th>
                     </tr>
