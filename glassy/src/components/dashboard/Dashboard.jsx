@@ -5,7 +5,7 @@ import AdminHeader from "./AdminHeader";
 
 
 
-function Dashboard() {
+const Dashboard = () => {
 
     let token = localStorage.getItem('token')
 

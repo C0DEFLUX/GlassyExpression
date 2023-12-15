@@ -5,6 +5,8 @@ function HomeProductTable() {
 
     const [data, setData] = useState([])
 
+    const apiUrl = `${process.env.REACT_APP_BASE_URL}`
+
     useEffect(() => {
         fetch('http://localhost/api/product-data')
             .then((response) => response.json())

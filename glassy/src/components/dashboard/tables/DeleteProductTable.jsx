@@ -7,7 +7,7 @@ function DeleteProductTable() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost/api/product-data')
+        fetch('http://localhost/api/product-data',)
             .then((response) => response.json())
             .then((data) => setData(data))
             .catch((error) => console.log('Error fetching data:', error))
@@ -21,7 +21,7 @@ function DeleteProductTable() {
             <div className="admin-content-table h-[75vh] overflow-scroll rounded-md">
                 <table className="w-full font-light rounded-md">
                     <tr className="bg-blue-400 text-white">
-                        <th className="px-4 py-4 text-start">Prokuts</th>
+                        <th className="px-4 py-4 text-start">Produkts</th>
                         <th className="px-4 py-4 text-start">Produkta Titula Bilde</th>
                         <th className="px-4 py-4 text-start">Pievienošanas Datums</th>
                         <th className="text-2xl"><HiOutlineCog8Tooth/></th>

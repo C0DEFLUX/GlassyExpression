@@ -6,7 +6,8 @@ import {
     NotFoundComponent,
     RussianComponent,
     Dashboard,
-    Add, Delete
+    Add,
+    Delete
 } from "./components";
 import React from "react";
 
