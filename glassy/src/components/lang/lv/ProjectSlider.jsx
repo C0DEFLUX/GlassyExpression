@@ -4,8 +4,8 @@ import 'swiper/css';
 import {Autoplay, Navigation, Pagination} from "swiper";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import close from '../../assets/img/close.svg';
-import img from '../../assets/img/about_img.jpg';
+import close from '../../../assets/img/close.svg';
+import img from '../../../assets/img/about_img.jpg';
 
 
 

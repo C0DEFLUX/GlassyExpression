@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from './Header'
-import Hero from './lv/Hero'
-import About from "./lv/About";
-import ProjectSlider from "./lv/ProjectSlider";
-import Footer from "./lv/Footer";
+import Header from '../Header'
+import Hero from '../lang/lv/Hero'
+import About from "../lang/lv/About";
+import ProjectSlider from "../lang/lv/ProjectSlider";
+import Footer from "../lang/lv/Footer";
 
 function LatvianComponent() {
 

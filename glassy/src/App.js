@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {
     Admin,
     EnglishComponent,
@@ -7,9 +7,9 @@ import {
     RussianComponent,
     Dashboard,
     Add,
-    Delete
 } from "./components";
 import React from "react";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
 
@@ -20,9 +20,12 @@ function App() {
                 <Route path="/en" element={<EnglishComponent/>}/>
                 <Route path="/ru" element={<RussianComponent/>}/>
                 <Route path="/admin" element={<Admin/>}/>
-                <Route path="/dashboard" element={<Dashboard/>}/>
-                <Route path="/dashboard/add" element={<Add/>}/>
-                <Route path="/dashboard/delete" element={<Delete/>}/>
+                <Route element={<PrivateRoutes />}>
+                    <Route path="/panelis" element={<Dashboard/>}/>
+                    <Route path="/panelis/pievienot" element={<Add/>}/>
+                    <Route path="/panelis/rediģēt" element={<Dashboard/>}/>
+                    <Route path="/panelis/marketings/titula-bilde" />
+                </Route>
                 <Route path="*" element={<NotFoundComponent/>}/>
             </Routes>
         </Router>

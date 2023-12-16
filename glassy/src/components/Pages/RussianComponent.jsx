@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from './Header'
-import Hero from "./ru/Hero";
-import About from "./ru/About";
-import ProjectSlider from "./ru/ProjectSlider";
+import Header from '../Header'
+import Hero from "../lang/ru/Hero";
+import About from "../lang/ru/About";
+import ProjectSlider from "../lang/ru/ProjectSlider";
 
 function RussianComponent() {
 

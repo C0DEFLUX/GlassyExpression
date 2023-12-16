@@ -1,7 +1,7 @@
 import React from 'react'
-import Fb from "../../assets/img/fb_icon.svg";
-import Ig from "../../assets/img/ig_icon.svg";
-import ChevUp from '../../assets/img/chev_up.svg'
+import Fb from "../../../assets/img/fb_icon.svg";
+import Ig from "../../../assets/img/ig_icon.svg";
+import ChevUp from '../../../assets/img/chev_up.svg'
 
 function Footer() {
 
@@ -19,16 +19,14 @@ function Footer() {
                     <a href="https://www.instagram.com/glassyexpression" target="_blank"><img className="h-[32px]" src={Ig} alt="Instagram icon"/></a>
                 </div>
                 <div className="footer-nav mb-4 flex flex-col items-center gap-4 w-[20rem] lg:items-end lg:mb-0">
-                    <a className="underline" href="/">Home</a>
-                    <a className="underline" href="#about">About</a>
-                    <a className="underline" href="#work">Work</a>
-                    <a className="underline" href="#contact">Contact</a>
+                    <a className="underline" href="/">Sākums</a>
+                    <a className="underline" href="#about">Par mums</a>
+                    <a className="underline" href="#work">Darbs</a>
+                    <a className="underline" href="#contact">Kontakti</a>
                 </div>
 
             </div>
-            <a  onClick={() => {
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            }} className="mb-4 flex gap-2 items-center font-bold" href=""><p>BACK TO TOP</p> <img className="h-[26px]" src={ChevUp} alt="Chevron up"/></a>
+            <a  onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'});}} className="mb-4 flex gap-2 items-center font-bold" href=""><p>Atpakaļ uz augšu</p> <img className="h-[26px]" src={ChevUp} alt="Chevron up"/></a>
             <p className="text-center">© 2023. All Rights Reserved.</p>
         </footer>
     )

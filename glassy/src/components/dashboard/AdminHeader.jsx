@@ -1,8 +1,9 @@
 import {PiSignOutBold} from "react-icons/pi";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {HiOutlineMenuAlt2} from "react-icons/hi";
 import Logo from "../../assets/img/logo_small.png";
-import {AiOutlineDelete, AiOutlineEdit, AiOutlineHome, AiOutlinePlusSquare} from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineHome, AiOutlinePlusSquare} from "react-icons/ai";
+import { MdAutoGraph } from "react-icons/md";
 import {GrClose} from "react-icons/gr";
 
 function AdminHeader() {
@@ -55,30 +56,30 @@ function AdminHeader() {
             </div>
             <div className="admin-header-main-nav-box flex flex-col gap-4">
                 <ul className="flex flex-col gap-4">
-                    <a href="/dashboard">
-                        <li className={`admin-nav-btn ${isActiveLink('/dashboard')}`}>
+                    <Link to="/panelis">
+                        <li className={`admin-nav-btn ${isActiveLink('/panelis')}`}>
                             <AiOutlineHome />
                             <p>Sākums</p>
                         </li>
-                    </a>
-                    <a href="/dashboard/add">
-                        <li className={`admin-nav-btn ${isActiveLink('/dashboard/add')}`}>
+                    </Link>
+                    <Link to="/panelis/pievienot">
+                        <li className={`admin-nav-btn ${isActiveLink('/panelis/pievienot')}`}>
                             <AiOutlinePlusSquare/>
                             <p>Pievienot</p>
                         </li>
-                    </a>
-                    <a href="/dashboard/edit">
-                        <li className={`admin-nav-btn ${isActiveLink('/dashboard/edit')}`}>
+                    </Link>
+                    <Link to="/panelis/rediģēt">
+                        <li className={`admin-nav-btn ${isActiveLink('/panelis/rediģēt')}`}>
                             <AiOutlineEdit/>
                             <p>Rediģēt</p>
                         </li>
-                    </a>
-                    <a href="/dashboard/delete">
-                        <li className={`admin-nav-btn ${isActiveLink('/dashboard/delete')}`}>
-                            <AiOutlineDelete/>
-                            <p>Dzēst</p>
+                    </Link>
+                    <Link to="/panelis/marketings/titula-bilde">
+                        <li className={`admin-nav-btn ${isActiveLink('/panelis/marketings/titula-bilde')}`}>
+                            <MdAutoGraph/>
+                            <p>Marketings</p>
                         </li>
-                    </a>
+                    </Link>
                 </ul>
             </div>
         </div>
