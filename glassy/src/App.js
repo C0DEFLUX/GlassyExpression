@@ -7,6 +7,7 @@ import {
     RussianComponent,
     Dashboard,
     Add,
+    Edit,
 } from "./components";
 import React from "react";
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -23,7 +24,7 @@ function App() {
                 <Route element={<PrivateRoutes />}>
                     <Route path="/panelis" element={<Dashboard/>}/>
                     <Route path="/panelis/pievienot" element={<Add/>}/>
-                    <Route path="/panelis/rediģēt" element={<Dashboard/>}/>
+                    <Route path="/panelis/rediģēt/:name" element={<Edit/>}/>
                     <Route path="/panelis/marketings/titula-bilde" />
                 </Route>
                 <Route path="*" element={<NotFoundComponent/>}/>

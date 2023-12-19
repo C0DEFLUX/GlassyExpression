@@ -26,7 +26,7 @@ function Footer() {
                 </div>
 
             </div>
-            <a  onClick={() => {
+            <a  oClick={() => {
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }} className="mb-4 flex gap-2 items-center font-bold" href=""><p>BACK TO TOP</p> <img className="h-[26px]" src={ChevUp} alt="Chevron up"/></a>
             <p className="text-center">© 2023. All Rights Reserved.</p>

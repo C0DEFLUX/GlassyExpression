@@ -22,7 +22,7 @@ const ErrorPopUp = () => {
         >
             <div className="bg-red-300 p-4 border-[1.5px] border-red-500 rounded flex space-x-1 items-center">
                 <MdBlock className="text-red-700 text-3xl mr-2"/>
-                <p className="text-red-700"><strong>Kaut kas nogāja greizi!</strong> Lūdzu mēģiniet vēlreiz vēlāk!</p>
+                <p className="text-red-700"><strong>Kaut kas nogāja greizi! </strong> Lūdzu mēģiniet vēlreiz vēlāk!</p>
             </div>
         </div>
     );

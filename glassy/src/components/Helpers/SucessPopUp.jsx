@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {MdBlock} from "react-icons/md";
+import { FaCheck } from "react-icons/fa6";
+
 
 const SucessPopUp = ({message}) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -19,8 +20,8 @@ const SucessPopUp = ({message}) => {
             } fixed bottom-10 right-5 transition-transform duration-500 ease-in-out`}
         >
             <div className="bg-green-300 p-4 border-[1.5px] border-green-500 rounded flex space-x-1 items-center">
-                <MdBlock className="text-green-700 text-3xl mr-2"/>
-                <p className="text-green-700"><strong>Darbība bija veiksmīga!</strong>{message}</p>
+                <FaCheck className="text-green-700 text-3xl mr-2"/>
+                <p className="text-green-700"><strong>Darbība bija veiksmīga! </strong>{message}</p>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import AdminHeader from "./AdminHeader";
 import axios from "axios";
 import ErrorPopUp from "../Helpers/ErrorPopUp";
 import Loader from "../Helpers/Loader";
+import {SuccessPopUp} from "../Helpers";
 
 const Dashboard = () => {
 
@@ -11,6 +12,16 @@ const Dashboard = () => {
     const [apiError, setApiError] = useState(false)
     const [loader, setLoader] = useState(true)
     const API_URL = `${process.env.REACT_APP_API_URL}`
+    const [message, setMessage] = useState('')
+    const [apiSuccess, setApiSuccess] = useState(false)
+    const success = localStorage.getItem('success')
+
+    if(success === 'true') {
+        setApiSuccess(true)
+        setMessage(localStorage.getItem('success_msg'))
+        localStorage.removeItem('success')
+        localStorage.removeItem('success_msg')
+    }
 
     useEffect(() => {
 
@@ -34,6 +45,9 @@ const Dashboard = () => {
         <>
             {apiError && (
                 <ErrorPopUp/>
+            )}
+            {apiSuccess && (
+                <SuccessPopUp message={message}/>
             )}
             <div className="admin-contanier min-h-screen bg-gray-100 overflow-hidden md:ml-[20rem]">
                 <div className="min-h-screen flex flex-col">

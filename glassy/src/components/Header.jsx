@@ -39,7 +39,6 @@ function Header() {
                 <select value={selectedLanguage} onChange={handleLanguageChange} name="lang" id="myLangSelect">
                     <option value="">LAT</option>
                     <option value="en" >ENG</option>
-                    <option value="ru">RU</option>
                 </select>
             </div>
         </header>

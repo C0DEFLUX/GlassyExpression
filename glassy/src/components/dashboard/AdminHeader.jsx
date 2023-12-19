@@ -68,12 +68,6 @@ function AdminHeader() {
                             <p>Pievienot</p>
                         </li>
                     </Link>
-                    <Link to="/panelis/rediģēt">
-                        <li className={`admin-nav-btn ${isActiveLink('/panelis/rediģēt')}`}>
-                            <AiOutlineEdit/>
-                            <p>Rediģēt</p>
-                        </li>
-                    </Link>
                     <Link to="/panelis/marketings/titula-bilde">
                         <li className={`admin-nav-btn ${isActiveLink('/panelis/marketings/titula-bilde')}`}>
                             <MdAutoGraph/>
