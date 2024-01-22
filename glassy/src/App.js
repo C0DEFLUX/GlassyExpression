@@ -8,6 +8,7 @@ import {
     Dashboard,
     Add,
     Edit,
+    Marketing,
 } from "./components";
 import React from "react";
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -25,7 +26,7 @@ function App() {
                     <Route path="/panelis" element={<Dashboard/>}/>
                     <Route path="/panelis/pievienot" element={<Add/>}/>
                     <Route path="/panelis/rediģēt/:name" element={<Edit/>}/>
-                    <Route path="/panelis/marketings/titula-bilde" />
+                    <Route path="/panelis/marketings/titula-bilde" element={<Marketing/>}/>
                 </Route>
                 <Route path="*" element={<NotFoundComponent/>}/>
             </Routes>

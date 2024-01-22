@@ -55,7 +55,7 @@ const Dashboard = () => {
                     <div className="admin-container-content w-full flex-grow p-2 lg:p-4 flex">
                         <div className="admin-content-tabel-wrapper bg-white shadow w-full flex-grow rounded-md p-2 lg:p-4">
                             <div className="admin-content-table-head mb-8">
-                                <h1 className="text-xl text-gray-500">Produktu saraksts</h1>
+                                <h1 className="text-gray-500">Produktu saraksts</h1>
                             </div>
                             <div className={loader ? 'flex justify-center' : 'admin-content-table h-[75vh] overflow-scroll rounded-md' }>
                                 {loader ? (

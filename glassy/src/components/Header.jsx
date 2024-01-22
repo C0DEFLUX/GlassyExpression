@@ -38,7 +38,7 @@ function Header() {
                 <a href="https://www.instagram.com/glassyexpression" target="_blank"><img className="h-[22px]" src={Ig} alt="Instagram icon"/></a>
                 <select value={selectedLanguage} onChange={handleLanguageChange} name="lang" id="myLangSelect">
                     <option value="">LAT</option>
-                    <option value="en" >ENG</option>
+                    <option value="en">ENG</option>
                 </select>
             </div>
         </header>

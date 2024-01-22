@@ -63,6 +63,9 @@ const Add = () => {
                     <div className="admin-container-content w-full flex-grow p-4 flex">
                         <div className="flex w-full">
                             <form encType="multipart/form-data" onSubmit={submitData} className="flex flex-col w-full bg-white p-2 rounded-md lg:p-4">
+                            <div className="admin-content-table-head mb-8">
+                                <h1 className="text-gray-500">Pievienot produktu</h1>
+                            </div>
                                 <div className="flex w-full flex-grow lg:space-x-12 flex-col lg:flex-row">
                                     <div className="flex flex-col space-y-4 lg:w-1/2">
                                         <div className="flex flex-col space-y-1 lg:h-1/6">

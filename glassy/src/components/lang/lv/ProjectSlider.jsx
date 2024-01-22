@@ -6,6 +6,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import close from '../../../assets/img/close.svg';
 import img from '../../../assets/img/about_img.jpg';
+import swiper_img_1 from '../../../assets/img/swiper_img_1.jpg'
+import swiper_img_2 from '../../../assets/img/swiper_img_2.jpg'
+import swiper_img_3 from '../../../assets/img/swiper_img_3.jpg'
+import swiper_img_4 from '../../../assets/img/swiper_img_4.jpg'
+import swiper_img_5 from '../../../assets/img/swiper_img_5.jpg'
+
+
+
+
 
 
 
@@ -45,11 +54,9 @@ function ProjectSlider () {
                     
                     <Swiper
                         className="sample-slider"
-                        // spaceBetween={60}
                         slidesPerView={2}
                         pagination={{ clickable: true }}
                         loop={true}
-                        // dynamicBullets={false}
                         navigation={true}
                         autoplay={{
                             "delay": 2000,
@@ -59,101 +66,43 @@ function ProjectSlider () {
                             "waitForTransition": true
                         }}
                         modules={[Autoplay, Navigation, Pagination]}
-                        breakpoints={{1: {slidesPerView: 1,}, 768: {slidesPerView: 2,}, 1024: {spaceBetween: 20, slidesPerView: 3,}, 1280: {spaceBetween: 20, slidesPerView: 3,},
+                        breakpoints={{
+                            1: {slidesPerView: 1,},
+                            768: {slidesPerView: 2,},
+                            1024: {slidesPerView: 3, spaceBetween: 30},
                         }}
                     >
-                        <SwiperSlide className="bg-red-200">
-                            <div onClick={() => showModal(1)} id="showDialog" className="h-[65vh] cursor-pointer">
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
                                 <img className="object-cover" src={img} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <div id="dialog-1" className="dialog-container items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.65)] z-40 hidden">
-                            <div className="bg-white w-full h-[40rem] lg:w-[80%] p-4">
-                                <div className="dialog-header flex justify-end w-full">
-                                    <button className="" onClick={() => hideModal(1)}>
-                                        <img className="h-[25px]" src={close} alt="Close icon"/>
-                                    </button>
-                                </div>
-                                <div className="dialog-content">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <SwiperSlide className="bg-red-200">
-                            <div onClick={() => showModal(2)} id="showDialog" className="h-[65vh] cursor-pointer">
-                                Imageset two
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_2} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <div id="dialog-2" className="dialog-container items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.65)] z-40 hidden">
-                            <div className="bg-white w-full h-[40rem] lg:w-[80%] p-4">
-                                <div className="dialog-header w-full flex justify-end">
-                                    <button className="" onClick={() => hideModal(2)}>
-                                        <img className="h-[25px]" src={close} alt="Close icon"/>
-                                    </button>
-                                </div>
-                                <div className="dialog-content">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <SwiperSlide className="bg-red-200">
-                            <div onClick={() => showModal(3)} id="showDialog" className="h-[65vh] cursor-pointer">
-                                Imageset three
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_3} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <div id="dialog-3" className="dialog-container items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.65)] z-40 hidden">
-                            <div className="bg-white w-full h-[40rem] lg:w-[80%] p-4">
-                                <div className="dialog-header w-full flex justify-end">
-                                    <button className="" onClick={() => hideModal(3)}>
-                                        <img className="h-[25px]" src={close} alt="Close icon"/>
-                                    </button>
-                                </div>
-                                <div className="dialog-content">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <SwiperSlide className="bg-red-200">
-                            <div onClick={() => showModal(4)} id="showDialog" className="h-[65vh] cursor-pointer">
-                                Imageset three
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_1} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <div id="dialog-4" className="dialog-container items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.65)] z-40 hidden">
-                            <div className="bg-white w-full h-[40rem] lg:w-[80%] p-4">
-                                <div className="dialog-header w-full flex justify-end">
-                                    <button className="" onClick={() => hideModal(4)}>
-                                        <img className="h-[25px]" src={close} alt="Close icon"/>
-                                    </button>
-                                </div>
-                                <div className="dialog-content">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <SwiperSlide className="bg-red-200">
-                            <div onClick={() => showModal(4)} id="showDialog" className="h-[65vh] cursor-pointer">
-                                Imageset three
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_4} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <div id="dialog-4" className="dialog-container items-center justify-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] bg-[rgba(0,0,0,0.65)] z-40 hidden">
-                            <div className="bg-white w-full h-[40rem] lg:w-[80%] p-4">
-                                <div className="dialog-header w-full flex justify-end">
-                                    <button className="" onClick={() => hideModal(4)}>
-                                        <img className="h-[25px]" src={close} alt="Close icon"/>
-                                    </button>
-                                </div>
-                                <div className="dialog-content">
-
-                                </div>
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_2} alt=""/>
                             </div>
-                        </div>
-
+                        </SwiperSlide>
                     </Swiper>
-
                 </div>
             </div>
         </section>

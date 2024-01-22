@@ -8,7 +8,7 @@ const SucessPopUp = ({message}) => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setIsOpen(false);
-        }, 4000);
+        }, 3000);
 
         return () => clearTimeout(timeoutId);
     }, []);

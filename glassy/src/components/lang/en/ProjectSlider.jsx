@@ -4,17 +4,16 @@ import 'swiper/css';
 import {Autoplay, Navigation, Pagination} from "swiper";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import img from "../../../assets/img/about_img.jpg";
+import swiper_img_2 from "../../../assets/img/swiper_img_2.jpg";
+import swiper_img_3 from "../../../assets/img/swiper_img_3.jpg";
+import swiper_img_1 from "../../../assets/img/swiper_img_1.jpg";
+import swiper_img_4 from "../../../assets/img/swiper_img_4.jpg";
+import swiper_img_5 from "../../../assets/img/swiper_img_5.jpg";
 
 
 
 function ProjectSlider () {
-
-        const sliderRef = useRef(null);
-
-
-
-
-
 
     return (
         <section className="flex flex-col items-center">
@@ -23,7 +22,7 @@ function ProjectSlider () {
                 <div className="slider-wrapper">
                     <Swiper
                         className="sample-slider"
-                        spaceBetween={60}
+                        slidesPerView={2}
                         pagination={{ clickable: true }}
                         loop={true}
                         navigation={true}
@@ -35,60 +34,43 @@ function ProjectSlider () {
                             "waitForTransition": true
                         }}
                         modules={[Autoplay, Navigation, Pagination]}
-
                         breakpoints={{
-                            // when window width is >= 576px
-                            1: {
-                                slidesPerView: 1,
-                            },
-                            // when window width is >= 768px
-                            768: {
-                                slidesPerView: 2,
-                            },
-                            // when window width is >= 1024px
-                            1024: {
-                                spaceBetween: 20,
-                                slidesPerView: 3,
-                            },
-                            1280: {
-                                spaceBetween: 20,
-                                slidesPerView: 3,
-                            },
+                            1: {slidesPerView: 1,},
+                            768: {slidesPerView: 2,},
+                            1024: {slidesPerView: 3, spaceBetween: 30},
                         }}
                     >
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={img} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_2} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_3} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_1} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover" src={swiper_img_4} alt=""/>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className="bg-red-500">
-                            <div className="h-[65vh]">
-                                asd
+                        <SwiperSlide>
+                            <div id="showDialog" className="h-[65vh]">
+                                <img className="object-cover h-full" src={swiper_img_5} alt=""/>
                             </div>
                         </SwiperSlide>
-
                     </Swiper>
-
                 </div>
             </div>
         </section>
