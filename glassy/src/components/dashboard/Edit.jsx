@@ -175,7 +175,7 @@ const Edit = () => {
                                             <h1>Dzēst produktu</h1>
                                             <p>Vai tiešām vēlies dzēst šo produktu? Produkts tiks dzēsts uz visiem laikiem!</p>
                                             <div className="flex space-x-2">
-                                                <button className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={deleteProduct}>Dzēst</button>
+                                                <div className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={deleteProduct}>Dzēst</div>
                                                 <button className="admin-btn bg-gray-500 hover:bg-gray-600 mt-4 ml-auto" onClick={closeDeleteModal}>Atcelt</button>
                                             </div>
                                         </div>
