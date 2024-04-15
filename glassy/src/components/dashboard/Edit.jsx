@@ -21,6 +21,7 @@ const Edit = () => {
         product_desc: '',
         image: ''
     })
+    const [confirmDelPopUp, setConfirmDelPopUp] = useState(false)
     const params = useParams()
 
     useEffect(() => {
@@ -90,6 +91,13 @@ const Edit = () => {
             })
     }
 
+    const openDeleteModal = () => {
+        setConfirmDelPopUp(true)
+    }
+    const closeDeleteModal = () => {
+        setConfirmDelPopUp(false)
+    }
+
     return (
         <>
             {apiError && (
@@ -157,11 +165,22 @@ const Edit = () => {
                                     </div>
 
                                 </div>
-                                <div className="flex w-fit ml-auto space-x-1">
-
-                                <div className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={deleteProduct}>Dzēst</div>
-                                <button type="submit" className="admin-btn mt-4 ml-auto" onClick={submitData}>Rediģēt</button>
+                                <div className="flex w-fit ml-auto space-x-2">
+                                    <button className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={openDeleteModal}>Dzēst</button>
+                                    <button type="submit" className="admin-btn mt-4 ml-auto" onClick={submitData}>Rediģēt</button>
                                 </div>
+                                {confirmDelPopUp && (
+                                    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-40 h-screen w-full bg-opacity-50 bg-black ">
+                                        <div className="flex flex-col items-center text-center max-w-[25rem] space-y-2 bg-white p-2 py-4 rounded">
+                                            <h1>Dzēst produktu</h1>
+                                            <p>Vai tiešām vēlies dzēst šo produktu? Produkts tiks dzēsts uz visiem laikiem!</p>
+                                            <div className="flex space-x-2">
+                                                <button className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={deleteProduct}>Dzēst</button>
+                                                <button className="admin-btn bg-gray-500 hover:bg-gray-600 mt-4 ml-auto" onClick={closeDeleteModal}>Atcelt</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </form>
 
                         </div>
