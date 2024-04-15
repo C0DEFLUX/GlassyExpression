@@ -166,7 +166,7 @@ const Edit = () => {
 
                                 </div>
                                 <div className="flex w-fit ml-auto space-x-2">
-                                    <button className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={openDeleteModal}>Dzēst</button>
+                                    <div className="admin-btn bg-red-500 hover:bg-red-600 mt-4 ml-auto" onClick={openDeleteModal}>Dzēst</div>
                                     <button type="submit" className="admin-btn mt-4 ml-auto" onClick={submitData}>Rediģēt</button>
                                 </div>
                                 {confirmDelPopUp && (
