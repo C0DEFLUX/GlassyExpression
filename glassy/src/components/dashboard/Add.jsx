@@ -31,6 +31,7 @@ const Add = () => {
         formData.append('product_title', productTitle)
         formData.append('product_desc', productDesc)
 
+
         axios.post(`${API_URL}/add-product`, formData)
             .then(response => {
                 setApiSuccess(true)
@@ -38,8 +39,10 @@ const Add = () => {
                 setProductDesc('')
                 setProductTitle('')
                 setMainImg('')
+
             })
             .catch(error => {
+                console.log(error)
                 if(error.response.status === 404) {
                     setApiError(true)
                 }
@@ -66,40 +69,109 @@ const Add = () => {
                             <div className="admin-content-table-head mb-8">
                                 <h1 className="text-gray-500">Pievienot produktu</h1>
                             </div>
-                                <div className="flex w-full flex-grow lg:space-x-12 flex-col lg:flex-row">
-                                    <div className="flex flex-col space-y-4 lg:w-1/2">
-                                        <div className="flex flex-col space-y-1 lg:h-1/6">
-                                            <label className="text-gray-500" htmlFor="">Proukta nosaukums</label>
-                                            <input
-                                                value={productTitle}
-                                                type="text"
-                                                name="productTitle"
-                                                className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
-                                                onChange={(e) => setProductTitle(e.target.value)}
-                                            />
-                                            {error.product_title && (
-                                                <span className="err-msg">{error.product_title}</span>
-                                            )}
+                                <div className="flex w-full flex-grow flex-col">
+                                    <div className="flex lg:space-x-2 flex-col lg:flex-row">
+                                        <div className="lg:w-1/2 w-full">
+                                            <div className="flex flex-col space-y-1 ">
+                                                <label className="text-gray-500" htmlFor="">Proukta nosaukums (LV)</label>
+                                                <input
+                                                    value={productTitle}
+                                                    type="text"
+                                                    name="productTitle"
+                                                    className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                                    onChange={(e) => setProductTitle(e.target.value)}
+                                                />
+                                                {error.product_title && (
+                                                    <span className="err-msg">{error.product_title}</span>
+                                                )}
+                                            </div>
+                                            <div className="flex flex-col space-y-1 ">
+                                                <label className="text-gray-500" htmlFor="">Proukta nosaukums (ENG)</label>
+                                                <input
+                                                    value={productTitle}
+                                                    type="text"
+                                                    name="productTitle"
+                                                    className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                                    onChange={(e) => setProductTitle(e.target.value)}
+                                                />
+                                                {error.product_title && (
+                                                    <span className="err-msg">{error.product_title}</span>
+                                                )}
+                                            </div>
                                         </div>
-                                        <div className="flex flex-col space-y-1 h-96 lg:h-full">
-                                            <label className="text-gray-500" htmlFor="">Produkta apraksts</label>
-                                            <textarea
-                                                value={productDesc}
-                                                name="productTitle"
-                                                className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
-                                                onChange={(e) => setProductDesc(e.target.value)}
-                                            >
+                                        <div className="lg:w-1/2 w-full">
+                                            <div className="flex flex-col space-y-1 ">
+                                                <label className="text-gray-500" htmlFor="">Proukta nosaukums (RU)</label>
+                                                <input
+                                                    value={productTitle}
+                                                    type="text"
+                                                    name="productTitle"
+                                                    className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                                    onChange={(e) => setProductTitle(e.target.value)}
+                                                />
+                                                {error.product_title && (
+                                                    <span className="err-msg">{error.product_title}</span>
+                                                )}
+                                            </div>
+                                            <div className="flex flex-col space-y-1 ">
+                                                <label className="text-gray-500" htmlFor="">Kategorija</label>
+                                                <input
+                                                    value={productTitle}
+                                                    type="text"
+                                                    name="productTitle"
+                                                    className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                                    onChange={(e) => setProductTitle(e.target.value)}
+                                                />
+                                                {error.product_title && (
+                                                    <span className="err-msg">{error.product_title}</span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col space-y-1 h-72 mt-8">
+                                        <label className="text-gray-500" htmlFor="">Produkta apraksts (LV)</label>
+                                        <textarea
+                                            value={productDesc}
+                                            name="productTitle"
+                                            className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                            onChange={(e) => setProductDesc(e.target.value)}
+                                        >
                                             </textarea>
-                                            {error.product_desc && (
-                                                <span className="err-msg">{error.product_desc}</span>
-                                            )}
-                                        </div>
+                                        {error.product_desc && (
+                                            <span className="err-msg">{error.product_desc}</span>
+                                        )}
+                                    </div>
+                                    <div className="flex flex-col space-y-1 h-72 mt-8">
+                                        <label className="text-gray-500" htmlFor="">Produkta apraksts (ENG)</label>
+                                        <textarea
+                                            value={productDesc}
+                                            name="productTitle"
+                                            className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                            onChange={(e) => setProductDesc(e.target.value)}
+                                        >
+                                            </textarea>
+                                        {error.product_desc && (
+                                            <span className="err-msg">{error.product_desc}</span>
+                                        )}
+                                    </div>
+                                    <div className="flex flex-col space-y-1 h-72 mt-8">
+                                        <label className="text-gray-500" htmlFor="">Produkta apraksts (RU)</label>
+                                        <textarea
+                                            value={productDesc}
+                                            name="productTitle"
+                                            className="flex-grow outline-none resize-none rounded-md p-2 border-[1px] border-gray-300"
+                                            onChange={(e) => setProductDesc(e.target.value)}
+                                        >
+                                            </textarea>
+                                        {error.product_desc && (
+                                            <span className="err-msg">{error.product_desc}</span>
+                                        )}
                                     </div>
                                     <div className="flex flex-col space-y-1 lg:w-1/2">
                                         <label htmlFor="" className="text-gray-500">Titula bilde</label>
-                                        <div className="flex items-center justify-center w-full h-full">
+                                        <div className="flex items-center justify-center w-full h-96">
                                             {mainImg ? (
-                                                <div className="relative h-96 lg:h-full w-full object-contain ">
+                                                <div className="relative h-96 w-full object-contain ">
                                                     <img className="absolute h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain" src={URL.createObjectURL(mainImg)} alt=""/>
                                                     <div className="flex items-center justify-center bg-gray-100 bg-opacity-50 absolute h-full w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 hover:opacity-100 duration-300">
                                                         <label htmlFor="image" className="admin-btn">Mainīt bildi</label>
@@ -139,10 +211,9 @@ const Add = () => {
                                             )}
                                         </div>
                                         {error.image && (
-                                            <span className="err-msg">{error.image}</span>
+                                            <span className="err-msg">{error.image[0]}</span>
                                         )}
                                     </div>
-
                                 </div>
                                 <button type="submit" className="admin-btn mt-4 ml-auto" onClick={submitData}>Pievienot</button>
                             </form>

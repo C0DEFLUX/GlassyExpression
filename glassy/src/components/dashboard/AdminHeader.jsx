@@ -3,7 +3,7 @@ import {Link, useLocation, useNavigate} from "react-router-dom";
 import {HiOutlineMenuAlt2} from "react-icons/hi";
 import Logo from "../../assets/img/logo_small.png";
 import { AiOutlineEdit, AiOutlineHome, AiOutlinePlusSquare} from "react-icons/ai";
-import { MdAutoGraph } from "react-icons/md";
+import {MdAutoGraph, MdOutlineCategory} from "react-icons/md";
 import {GrClose} from "react-icons/gr";
 
 function AdminHeader() {
@@ -46,7 +46,7 @@ function AdminHeader() {
                 </button>
             </div>
         </div>
-        <div className="admin-header-main absolute left-0 top-0 bg-blue-400 md:w-[20rem] min-h-screen z-0 px-4 pt-2 hidden md:block">
+        <div className="admin-header-main absolute z-40 left-0 top-0 bg-blue-400 md:w-[20rem] min-h-screen z-0 px-4 pt-2 hidden md:block">
             <div className="admin-header-main-header flex items-center justify-between gap-2 rounded-md p-2 mb-10 bg-white">
                 <div className="flex items-center gap-4">
                     <img className="h-[40px]" src={Logo} alt="Glassy Expression logo"/>
@@ -66,6 +66,12 @@ function AdminHeader() {
                         <li className={`admin-nav-btn ${isActiveLink('/panelis/pievienot')}`}>
                             <AiOutlinePlusSquare/>
                             <p>Pievienot</p>
+                        </li>
+                    </Link>
+                    <Link to="/panelis/kategorijas">
+                        <li className={`admin-nav-btn ${isActiveLink('/panelis/kategorijas')}`}>
+                            <MdOutlineCategory/>
+                            <p>Kategorijas</p>
                         </li>
                     </Link>
                     <Link to="/panelis/marketings/titula-bilde">

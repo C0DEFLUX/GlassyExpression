@@ -11,3 +11,4 @@ export {default as Dashboard} from './dashboard/Dashboard';
 export {default as Add} from './dashboard/Add'
 export {default as Edit} from './dashboard/Edit'
 export {default as Marketing}  from './dashboard/Marketing'
+export {default as Category} from './dashboard/CategoryAdd'
