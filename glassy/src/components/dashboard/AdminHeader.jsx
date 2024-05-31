@@ -29,7 +29,6 @@ function AdminHeader() {
 
     const location = useLocation();
 
-    // Function to check if the link matches the current URL
     const isActiveLink = (link) => {
         return link === location.pathname ? 'bg-white text-blue-400' : '';
     }

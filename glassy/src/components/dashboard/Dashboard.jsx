@@ -30,6 +30,7 @@ const Dashboard = () => {
                 .then(response => {
                     setLoader(false)
                     setData(response.data)
+                    console.log(response)
                 })
                 .catch(error => {
                     setApiError(true)
