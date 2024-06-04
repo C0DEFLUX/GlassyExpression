@@ -154,7 +154,7 @@ const CategoryAdd = () => {
                                 {loader ? (
                                     <Loader />
                                 ):(
-                                    <CategoryTable data={data} onDelete={deleteCategory}/>
+                                    <CategoryTable data={data} setData={setData} onDelete={deleteCategory}/>
                                 )}
                             </div>
                         </div>

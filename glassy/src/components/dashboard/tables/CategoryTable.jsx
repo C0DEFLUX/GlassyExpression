@@ -5,8 +5,9 @@ import {FaRegTrashAlt} from "react-icons/fa";
 import {IoTrashOutline} from "react-icons/io5";
 import axios from "axios";
 import {ErrorPopUp, SuccessPopUp} from "../../Helpers";
+import {IoMdCheckmark, IoMdClose} from "react-icons/io";
 
-const CategoryTable = ({data, onDelete}) => {
+const CategoryTable = ({data, setData, onDelete}) => {
 
     const[deleteModalConf, setDeleteModalConf] = useState(false)
     const [deleteCatId, setDeleteCatId] = useState(null)
@@ -14,6 +15,8 @@ const CategoryTable = ({data, onDelete}) => {
     const [apiError, setApiError] = useState(false)
     const [apiSuccess, setApiSuccess] = useState(false)
     const API_URL = `${process.env.REACT_APP_API_URL}`
+    const [editableRowId, setEditableRowId] = useState(null)
+    const [newValues, setNewValues] = useState({})
 
 
     //Set category id to be deleted and show the delete modal
@@ -32,7 +35,50 @@ const CategoryTable = ({data, onDelete}) => {
         onDelete(deleteCatId)
         setDeleteModalConf(false)
         setDeleteCatId(null)
+    }
 
+    const showEditFields = (id) => {
+        setEditableRowId(id);
+        const item = data.find((item) => item.id === id);
+        setNewValues({
+            category_name_lv: item.category_name_lv,
+            category_name_eng: item.category_name_eng,
+            category_name_ru: item.category_name_ru,
+        });
+    }
+
+    const hideEditFields = () => {
+        setEditableRowId(null);
+        setNewValues({});
+    };
+
+    const handleInputChange = (e, field) => {
+        setNewValues({ ...newValues, [field]: e.target.value });
+    };
+
+    const handleSubmit = async(id) => {
+        await axios.post(`${API_URL}/edit-category/${id}`, {
+            id,
+            ...newValues
+        })
+            .then(response => {
+                setApiSuccess(true)
+                setMessage(response.data.success_msg)
+
+                if (response.status === 201) {
+
+                    const updatedCategory = response.data.data;
+                    const updatedData = data.map(cat => cat.id === id ? updatedCategory : cat);
+                    setData(updatedData);
+
+
+                    hideEditFields();
+                }
+            })
+            .catch(error => {
+                setApiError(true)
+            })
+        hideEditFields()
     }
 
     return (
@@ -56,12 +102,55 @@ const CategoryTable = ({data, onDelete}) => {
                 <tbody>
                 {data.map((item) => (
                     <tr key={item.id} id={item.id} className="bg-neutral-100 text-[#485B69] hover:bg-neutral-200 hover:text-black">
-                        <td className="px-4 py-2 text-start">{item.category_name_lv}</td>
-                        <td className="px-4 py-2 text-start">{item.category_name_eng}</td>
-                        <td className="px-4 py-2 text-start">{item.category_name_ru}</td>
+                        <td className="px-4 py-2 text-start">
+                            {editableRowId === item.id ? (
+                                <input
+                                    className="p-2 rounded-xl outline-none bg-white"
+                                    value={newValues.category_name_lv}
+                                    type="text"
+                                    onChange={(e) => handleInputChange(e, 'category_name_lv')}
+                                />
+                            ) : (
+                                item.category_name_lv
+                            )}
+                        </td>
+                        <td className="px-4 py-2 text-start">
+                            {editableRowId === item.id ? (
+                                <input
+                                    className="p-2 rounded-xl outline-none bg-white"
+                                    value={newValues.category_name_eng}
+                                    type="text"
+                                    onChange={(e) => handleInputChange(e, 'category_name_eng')}
+                                />
+                            ) : (
+                                item.category_name_eng
+                            )}
+                        </td>
+                        <td className="px-4 py-2 text-start">
+                            {editableRowId === item.id ? (
+                                <input
+                                    className="p-2 rounded-xl outline-none bg-white"
+                                    value={newValues.category_name_ru}
+                                    type="text"
+                                    onChange={(e) => handleInputChange(e, 'category_name_ru')}
+                                />
+                            ) : (
+                                item.category_name_ru
+                            )}
+                        </td>
                         <td className="px-4 py-1 text-start">{item.created_at}</td>
                         <td className="px-4 py-2 flex items-center justify-center h-[160px] text-2xl space-x-2">
-                            <GoPencil className="hover:text-blue-400 cursor-pointer"/>
+                            {editableRowId === item.id ? (
+                                <div className="flex space-x-2">
+                                    <IoMdCheckmark className="hover:text-green-500 cursor-pointer" onClick={()=> handleSubmit(item.id)}/>
+                                    <IoMdClose className="hover:text-blue-400 cursor-pointer" onClick={hideEditFields} />
+                                </div>
+                            ) : (
+                                <GoPencil
+                                    className="hover:text-blue-400 cursor-pointer"
+                                    onClick={() => showEditFields(item.id)}
+                                />
+                            )}
                             <IoTrashOutline className="hover:text-red-500 text-2xl cursor-pointer" onClick={() => openCategoryDeleteConfModal(item.id)}/>
                         </td>
 

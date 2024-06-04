@@ -10,6 +10,8 @@ import {
     Edit,
     Marketing,
     Category,
+    ProductCatalog,
+    SingleProduct,
 } from "./components";
 import React from "react";
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -23,6 +25,8 @@ function App() {
                 <Route path="/en" element={<EnglishComponent/>}/>
                 <Route path="/ru" element={<RussianComponent/>}/>
                 <Route path="/admin" element={<Admin/>}/>
+                <Route path="/catalog" element={<ProductCatalog/>}/>
+                <Route path="/product/:name" element={<SingleProduct/>}/>
                 <Route element={<PrivateRoutes />}>
                     <Route path="/panelis" element={<Dashboard/>}/>
                     <Route path="/panelis/pievienot" element={<Add/>}/>

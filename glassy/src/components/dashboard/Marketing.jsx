@@ -4,17 +4,33 @@ import Loader from "../Helpers/Loader";
 import HomeProductTable from "./tables/HomeProductTable";
 import HeroImg from '../../assets/img/hero.jpg'
 import {SuccessPopUp} from "../Helpers";
+import axios from "axios";
 
 
 const Marketing = () => {
 
     const [image, setImage] = useState(''); // Initial image URL
     const [file, setFile] = useState(null); // File selected via input
+    const [apiError, setApiError] = useState(false)
+    const [loader, setLoader] = useState(true)
     const [apiSuccess, setApiSuccess] = useState(false)
     const [message, setMessage] = useState('')
+    const API_URL = `${process.env.REACT_APP_API_URL}`
 
     useEffect(()=> {
-        setImage(HeroImg)
+
+        const fetchData = () => {
+            axios.get(`${API_URL}/product-data`)
+                .then(response => {
+                    setLoader(false)
+                    console.log(response)
+                })
+                .catch(error => {
+                    setApiError(true)
+                })
+        }
+
+        fetchData()
     }, [])
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];

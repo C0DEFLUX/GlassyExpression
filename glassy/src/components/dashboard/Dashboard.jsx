@@ -15,6 +15,8 @@ const Dashboard = () => {
     const [message, setMessage] = useState('')
     const [apiSuccess, setApiSuccess] = useState(false)
     const success = localStorage.getItem('success')
+    const [refresh, setRefresh] = useState(false);
+
 
     if(success === 'true') {
         setApiSuccess(true)
@@ -30,7 +32,6 @@ const Dashboard = () => {
                 .then(response => {
                     setLoader(false)
                     setData(response.data)
-                    console.log(response)
                 })
                 .catch(error => {
                     setApiError(true)
@@ -39,7 +40,24 @@ const Dashboard = () => {
 
         fetchData()
 
-    }, [])
+    }, [refresh])
+
+    const handleDelete = async (id) => {
+        axios.delete(`${API_URL}/delete-product/${id}`)
+            .then(response => {
+                setMessage(response.data.message)
+                setApiSuccess(true)
+                setRefresh(!refresh)
+                setTimeout(() => {
+                    setApiSuccess(false);
+                }, 5000);
+            })
+            .catch((error) => {
+                if(error.response.status === 404) {
+                    setApiError(true)
+                }
+            })
+    }
 
 
     return (
@@ -62,7 +80,7 @@ const Dashboard = () => {
                                 {loader ? (
                                     <Loader />
                                 ):(
-                                    <HomeProductTable data={data}/>
+                                    <HomeProductTable onDelete={handleDelete} data={data}/>
                                 )}
                             </div>
                         </div>

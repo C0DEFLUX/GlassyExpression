@@ -3,6 +3,7 @@ import Header from '../Header'
 import Hero from "../lang/ru/Hero";
 import About from "../lang/ru/About";
 import ProjectSlider from "../lang/ru/ProjectSlider";
+import Footer from "../lang/ru/Footer"
 
 function RussianComponent() {
 
@@ -12,6 +13,7 @@ function RussianComponent() {
             <Hero/>
             <About/>
             <ProjectSlider/>
+            <Footer />
         </>
     )
 
