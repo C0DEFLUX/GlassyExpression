@@ -45,7 +45,6 @@ const Dashboard = () => {
     const handleDelete = async (id) => {
         axios.delete(`${API_URL}/delete-product/${id}`)
             .then(response => {
-                setMessage(response.data.message)
                 setApiSuccess(true)
                 setRefresh(!refresh)
                 setTimeout(() => {

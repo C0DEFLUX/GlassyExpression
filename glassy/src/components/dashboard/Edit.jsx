@@ -23,6 +23,7 @@ const Edit = () => {
 
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [previews, setPreviews] = useState([]);
+    const [apiImages, setApiImages] = useState([]); // Images fetched from the API
     const [imageUrls, setImageUrls] = useState([]);
     const fileInputRef = useRef(null);
 
@@ -49,6 +50,7 @@ const Edit = () => {
         const fetchData = () => {
             axios.get(`${API_URL}/product-by-name/${params.name}`)
                 .then(response => {
+                    console.log(response.data)
                     setTitleLv(response.data.product_title_lv)
                     setTitleEng(response.data.product_title_eng)
                     setTitleRu(response.data.product_title_ru)
@@ -72,11 +74,10 @@ const Edit = () => {
     //FIX
     //Need to add the current product gallery images to newly added gallery images otherwise
     //it removes the current gallery images and only saves the newly added images
-
     const handleFileChange = (event) => {
         const newFiles = Array.from(event.target.files);
 
-        if (selectedFiles.length + newFiles.length > 8) {
+        if (selectedFiles.length + newFiles.length + apiImages.length > 8) {
             return;
         }
 
@@ -88,26 +89,31 @@ const Edit = () => {
         setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
     };
 
-    const handleRemove = (index) => {
-        //Remove images and preview at the given index
-        setSelectedFiles((prevFiles) => {
-            const updatedFiles = prevFiles.filter((_, i) => i !== index);
-            if (updatedFiles.length === 0) {
-                fileInputRef.current.value = '';
-            }
-            return updatedFiles;
-        });
+    const handleRemove = (index, fromApi) => {
+        if (fromApi) {
+            setApiImages((prevImages) => {
+                const updatedImages = prevImages.filter((_, i) => i !== index);
+                return updatedImages;
+            });
+        } else {
+            setSelectedFiles((prevFiles) => {
+                const updatedFiles = prevFiles.filter((_, i) => i !== index);
+                if (updatedFiles.length === 0) {
+                    fileInputRef.current.value = '';
+                }
+                return updatedFiles;
+            });
 
-        setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+            setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+        }
     };
+
 
 
     const handleCategorySelect = (event) => {
         setCategory(event.target.value)
     }
 
-    //FIX
-    //Doesn't pass new image file to the backend.
     const handleChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -140,6 +146,7 @@ const Edit = () => {
 
         axios.post(`${API_URL}/edit-product/${params.name}`, payload)
             .then(response => {
+                console.log(response)
                 setApiSuccess(true)
                 setMessage(response.data.success_msg)
                 setSubmitLoader(false)

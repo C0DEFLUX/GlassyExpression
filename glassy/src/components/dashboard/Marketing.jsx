@@ -20,9 +20,10 @@ const Marketing = () => {
     useEffect(()=> {
 
         const fetchData = () => {
-            axios.get(`${API_URL}/product-data`)
+            axios.get(`${API_URL}/title-image`)
                 .then(response => {
                     setLoader(false)
+                    setImage(response.data[0].image_url)
                     console.log(response)
                 })
                 .catch(error => {
@@ -43,12 +44,21 @@ const Marketing = () => {
         }
     }
 
-    const saveImage = () => {
-        setApiSuccess(true)
-        setTimeout(() => {
-            setApiSuccess(false)
-        },3300)
-        setMessage('Bilde veiksmīgi samainīta!')
+    const saveImage = async (e) => {
+        e.preventDefault()
+
+        const payload = new FormData()
+
+        payload.append('image', file)
+
+       await axios.post(`${API_URL}/add-title-image`, payload)
+           .then(response => {
+               console.log(response)
+           })
+           .catch(error => {
+               console.log(error)
+           })
+
     }
 
     return (
@@ -60,7 +70,7 @@ const Marketing = () => {
                 <div className="min-h-screen flex flex-col">
                     <AdminHeader/>
                     <div className="admin-container-content w-full flex-grow p-2 lg:p-4 flex">
-                        <div className="admin-content-tabel-wrapper bg-white shadow w-full flex-grow rounded-md p-2 lg:p-4">
+                        <form encType="multipart/form-data" onSubmit={saveImage} className="admin-content-tabel-wrapper bg-white shadow w-full flex-grow rounded-md p-2 lg:p-4">
                             <div className="admin-content-table-head mb-8">
                                 <h1 className="text-gray-500">Marketings</h1>
                             </div>
@@ -83,7 +93,7 @@ const Marketing = () => {
                             <div className="flex">
                                 <button className="admin-btn ml-auto mt-10" onClick={saveImage}>Saglabāt</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

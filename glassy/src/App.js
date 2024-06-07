@@ -1,10 +1,8 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {
     Admin,
-    EnglishComponent,
-    LatvianComponent,
+    Page,
     NotFoundComponent,
-    RussianComponent,
     Dashboard,
     Add,
     Edit,
@@ -21,9 +19,7 @@ function App() {
     return(
         <Router>
             <Routes>
-                <Route path="/" element={<LatvianComponent/>}/>
-                <Route path="/en" element={<EnglishComponent/>}/>
-                <Route path="/ru" element={<RussianComponent/>}/>
+                <Route path="/" element={<Page/>}/>
                 <Route path="/admin" element={<Admin/>}/>
                 <Route path="/catalog" element={<ProductCatalog/>}/>
                 <Route path="/product/:name" element={<SingleProduct/>}/>

@@ -1,8 +1,5 @@
 // Component exports
-
-export {default as EnglishComponent} from './Pages/EnglishComponent'
-export {default as LatvianComponent} from './Pages/LatvianComponent'
-export {default as RussianComponent} from './Pages/RussianComponent'
+export {default as Page} from './Pages/Page'
 export {default as ProductCatalog} from './Pages/ProductCatalog'
 export {default as SingleProduct} from './Pages/SingleProduct'
 

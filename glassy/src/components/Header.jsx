@@ -3,31 +3,21 @@ import Logo from '../assets/img/logo_small.png'
 import Fb from '../assets/img/fb_icon.svg'
 import Ig from '../assets/img/ig_icon.svg'
 import {useLocation, useNavigate} from "react-router-dom";
+import LanguageSelector from "./Helpers/LanguageSelector";
 
-function Header() {
+const Header = ({ currentLanguage, onChangeLanguage }) => {
+    const navigate = useNavigate()
 
-    const history = useNavigate()
-    const location = useLocation();
-
-    const [selectedLanguage, setSelectedLanguage] = useState('');
-
-    useEffect(() => {
-        const pathname = location.pathname;
-        const language = pathname.substr(1);
-        setSelectedLanguage(language);
-    }, [location.pathname]);
-
-    function handleLanguageChange(event) {
-        const selectedLanguage = event.target.value;
-        history(`/${selectedLanguage}`);
+    const openHomePage = () => {
+        navigate(`/`)
     }
 
 
     return (
-        <header className="absolute top-0 left-0 z-20 min-h-[6rem] w-full flex justify-center items-center bg-white text-black">
+        <header className="min-h-[6rem] w-full flex justify-center items-center bg-white text-black">
             <div className="container flex justify-between items-center lg:p-0 p-2">
                 <div className="flex items-center flex-col sm:flex-row sm:space-x-5">
-                    <div className="nav-logo flex items-center space-x-1">
+                    <div onClick={openHomePage} className="nav-logo flex items-center space-x-1 cursor-pointer">
                         <img className="h-[60px]" src={Logo} alt="GlassyExpression Logo"/>
                         <h1 className="text-xl">Glassy Expression</h1>
                     </div>
@@ -44,11 +34,7 @@ function Header() {
                             <img className="h-5 w-5" src={Ig} alt="Instagram icon"/>
                         </a>
                     </div>
-                    <select value={selectedLanguage} onChange={handleLanguageChange} name="lang" id="myLangSelect">
-                        <option value="">LAT</option>
-                        <option value="en">ENG</option>
-                        <option value="ru">RU</option>
-                    </select>
+                    <LanguageSelector currentLanguage={currentLanguage} onChangeLanguage={onChangeLanguage} />
                 </div>
             </div>
         </header>

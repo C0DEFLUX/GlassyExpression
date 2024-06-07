@@ -28,7 +28,7 @@ const HomeProductTable = ({data, onDelete}) => {
         setDeleteId(null)
     }
 
-    const handleDelete = async (id) => {
+    const handleDelete = async () => {
         onDelete(deleteId)
         setDeleteConfModal(false)
         setDeleteId(null)
