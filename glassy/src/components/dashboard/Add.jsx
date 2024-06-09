@@ -32,6 +32,9 @@ const Add = () => {
     const [error, setError] = useState([])
     const [submitLoader, setSubmitLoader] = useState(false)
 
+    const token = localStorage.getItem('token')
+
+
 
     const handleFileChange = (event) => {
         const newFiles = Array.from(event.target.files);
@@ -106,7 +109,11 @@ const Add = () => {
 
         setSubmitLoader(true)
 
-        axios.post(`${API_URL}/add-product`, payload)
+        axios.post(`${API_URL}/add-product`, payload, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then(response => {
                 setApiSuccess(true)
                 setMessage(response.data.success_msg)
@@ -127,6 +134,10 @@ const Add = () => {
                     setSubmitLoader(false)
                 }
                 if(error.response.status === 422) {
+                    setError(error.response.data.errors)
+                    setSubmitLoader(false)
+                }
+                if(error.response.status === 403) {
                     setError(error.response.data.errors)
                     setSubmitLoader(false)
                 }
@@ -308,10 +319,10 @@ const Add = () => {
                                                 <label htmlFor="multipleImg" className="underline text-blue-400 cursor-pointer hover:text-blue-600">Pievienot bildes</label>
                                                 <input className="hidden" ref={fileInputRef} type="file" id="multipleImg" onChange={handleFileChange} multiple accept="image/*" />
                                             </div>
-                                            <div className="grid h-96 lg:grid-cols-4 lg:grid-rows-2 gap-2">
+                                            <div className="grid lg:grid-cols-4 lg:grid-rows-2 gap-2">
                                                 {previews.map((preview, index) => (
                                                     <div className="relative">
-                                                        <img className="object-cover h-full w-full" key={index} src={preview} alt={`Preview ${index}`} />
+                                                        <img className="object-contain h-60 w-full" key={index} src={preview} alt={`Preview ${index}`} />
                                                         <div className="absolute cursor-pointer flex items-center justify-center top-0 right-0 bg-white mt-2 mr-2 rounded-full h-6 w-6" onClick={() => handleRemove(index)}>
                                                             <GrClose />
                                                         </div>

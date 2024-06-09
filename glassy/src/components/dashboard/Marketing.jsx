@@ -5,26 +5,27 @@ import HomeProductTable from "./tables/HomeProductTable";
 import HeroImg from '../../assets/img/hero.jpg'
 import {SuccessPopUp} from "../Helpers";
 import axios from "axios";
+import ErrorPopUp from "../Helpers/ErrorPopUp";
 
 
 const Marketing = () => {
 
-    const [image, setImage] = useState(''); // Initial image URL
-    const [file, setFile] = useState(null); // File selected via input
+    const [image, setImage] = useState('');
+    const [file, setFile] = useState(null);
     const [apiError, setApiError] = useState(false)
     const [loader, setLoader] = useState(true)
     const [apiSuccess, setApiSuccess] = useState(false)
     const [message, setMessage] = useState('')
     const API_URL = `${process.env.REACT_APP_API_URL}`
+    const token = localStorage.getItem('token')
 
     useEffect(()=> {
 
-        const fetchData = () => {
-            axios.get(`${API_URL}/title-image`)
+        const fetchData = async () => {
+            await axios.get(`${API_URL}/title-image`)
                 .then(response => {
                     setLoader(false)
                     setImage(response.data[0].image_url)
-                    console.log(response)
                 })
                 .catch(error => {
                     setApiError(true)
@@ -44,6 +45,8 @@ const Marketing = () => {
         }
     }
 
+
+
     const saveImage = async (e) => {
         e.preventDefault()
 
@@ -51,12 +54,27 @@ const Marketing = () => {
 
         payload.append('image', file)
 
-       await axios.post(`${API_URL}/add-title-image`, payload)
+       await axios.post(`${API_URL}/add-title-image`, payload, {
+           headers: {
+               Authorization: token
+           }
+       })
            .then(response => {
+               setMessage(response.data.success_msg)
+               setApiSuccess(true)
                console.log(response)
+               setTimeout(() => {
+                   setApiSuccess(false);
+               }, 5000);
            })
            .catch(error => {
-               console.log(error)
+
+               if(error.response.status === 404) {
+                   setApiError(true)
+               }
+               if(error.response.status === 403) {
+                   setApiError(true)
+               }
            })
 
     }
@@ -65,6 +83,9 @@ const Marketing = () => {
         <>
             {apiSuccess && (
                 <SuccessPopUp message={message}/>
+            )}
+            {apiError && (
+                <ErrorPopUp/>
             )}
             <div className="admin-contanier min-h-screen bg-gray-100 overflow-hidden md:ml-[20rem]">
                 <div className="min-h-screen flex flex-col">

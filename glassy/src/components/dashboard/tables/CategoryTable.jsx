@@ -17,6 +17,9 @@ const CategoryTable = ({data, setData, onDelete}) => {
     const API_URL = `${process.env.REACT_APP_API_URL}`
     const [editableRowId, setEditableRowId] = useState(null)
     const [newValues, setNewValues] = useState({})
+    const token = localStorage.getItem('token')
+    const [error, setError] = useState([])
+
 
 
     //Set category id to be deleted and show the delete modal
@@ -50,6 +53,7 @@ const CategoryTable = ({data, setData, onDelete}) => {
     const hideEditFields = () => {
         setEditableRowId(null);
         setNewValues({});
+        setError([]);
     };
 
     const handleInputChange = (e, field) => {
@@ -60,25 +64,36 @@ const CategoryTable = ({data, setData, onDelete}) => {
         await axios.post(`${API_URL}/edit-category/${id}`, {
             id,
             ...newValues
+
+        },{
+            headers: {
+                Authorization: token
+            }
         })
             .then(response => {
                 setApiSuccess(true)
                 setMessage(response.data.success_msg)
 
                 if (response.status === 201) {
-
                     const updatedCategory = response.data.data;
                     const updatedData = data.map(cat => cat.id === id ? updatedCategory : cat);
                     setData(updatedData);
-
 
                     hideEditFields();
                 }
             })
             .catch(error => {
-                setApiError(true)
+                if(error.response.status === 422) {
+                    setError(error.response.data.errors)
+                }
+                if(error.response.status === 404) {
+                    setApiError(true)
+                }
+                if(error.response.status === 403) {
+                    setApiError(true)
+                }
             })
-        hideEditFields()
+        // hideEditFields()
     }
 
     return (
@@ -104,36 +119,51 @@ const CategoryTable = ({data, setData, onDelete}) => {
                     <tr key={item.id} id={item.id} className="bg-neutral-100 text-[#485B69] hover:bg-neutral-200 hover:text-black">
                         <td className="px-4 py-2 text-start">
                             {editableRowId === item.id ? (
-                                <input
-                                    className="p-2 rounded-xl outline-none bg-white"
-                                    value={newValues.category_name_lv}
-                                    type="text"
-                                    onChange={(e) => handleInputChange(e, 'category_name_lv')}
-                                />
+                                <>
+                                    <input
+                                        className="p-2 rounded-xl outline-none bg-white"
+                                        value={newValues.category_name_lv}
+                                        type="text"
+                                        onChange={(e) => handleInputChange(e, 'category_name_lv')}
+                                    />
+                                    {error.category_name_lv && (
+                                        <span className="err-msg">{error.category_name_lv[0]}</span>
+                                    )}
+                                </>
                             ) : (
                                 item.category_name_lv
                             )}
                         </td>
                         <td className="px-4 py-2 text-start">
                             {editableRowId === item.id ? (
-                                <input
+                                <>
+                                    <input
                                     className="p-2 rounded-xl outline-none bg-white"
                                     value={newValues.category_name_eng}
-                                    type="text"
-                                    onChange={(e) => handleInputChange(e, 'category_name_eng')}
-                                />
+                                        type="text"
+                                        onChange={(e) => handleInputChange(e, 'category_name_eng')}
+                                    />
+                                    {error.category_name_eng && (
+                                        <span className="err-msg">{error.category_name_eng[0]}</span>
+                                    )}
+                                </>
                             ) : (
                                 item.category_name_eng
                             )}
                         </td>
                         <td className="px-4 py-2 text-start">
                             {editableRowId === item.id ? (
-                                <input
-                                    className="p-2 rounded-xl outline-none bg-white"
-                                    value={newValues.category_name_ru}
-                                    type="text"
-                                    onChange={(e) => handleInputChange(e, 'category_name_ru')}
-                                />
+                                <>
+                                    <input
+                                        className="p-2 rounded-xl outline-none bg-white"
+                                        value={newValues.category_name_ru}
+                                        type="text"
+                                        onChange={(e) => handleInputChange(e, 'category_name_ru')}
+                                    />
+                                    {error.category_name_ru && (
+                                        <span className="err-msg">{error.category_name_ru[0]}</span>
+                                    )}
+                                </>
                             ) : (
                                 item.category_name_ru
                             )}

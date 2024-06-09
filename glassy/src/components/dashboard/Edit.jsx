@@ -4,6 +4,7 @@ import axios from "axios";
 import {ErrorPopUp, SuccessPopUp, ButtonLoader} from "../Helpers";
 import {GrClose} from "react-icons/gr";
 import {useParams} from "react-router-dom";
+import {FaInfoCircle} from "react-icons/fa";
 
 
 const Edit = () => {
@@ -35,6 +36,8 @@ const Edit = () => {
     const [error, setError] = useState([])
     const [submitLoader, setSubmitLoader] = useState(false)
     const params = useParams()
+    const token = localStorage.getItem('token')
+
 
     useEffect(() => {
         const fetchCategories = () => {
@@ -48,9 +51,8 @@ const Edit = () => {
         }
 
         const fetchData = () => {
-            axios.get(`${API_URL}/product-by-name/${params.name}`)
+            axios.get(`${API_URL}/product-by-id/${params.name}`)
                 .then(response => {
-                    console.log(response.data)
                     setTitleLv(response.data.product_title_lv)
                     setTitleEng(response.data.product_title_eng)
                     setTitleRu(response.data.product_title_ru)
@@ -62,8 +64,8 @@ const Edit = () => {
                     setPreviews(response.data.gallery || [])
                 })
                 .catch(error => {
-                    setApiError(true)
                     console.log(error)
+                    setApiError(true)
                 })
         }
 
@@ -71,9 +73,7 @@ const Edit = () => {
         fetchCategories()
     }, [])
 
-    //FIX
-    //Need to add the current product gallery images to newly added gallery images otherwise
-    //it removes the current gallery images and only saves the newly added images
+
     const handleFileChange = (event) => {
         const newFiles = Array.from(event.target.files);
 
@@ -81,12 +81,12 @@ const Edit = () => {
             return;
         }
 
-        // Append new images to existing images
-        setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
+        setPreviews([]);
 
-        // Make previews for new images
+        setSelectedFiles(newFiles);
+
         const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
-        setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+        setPreviews(newPreviews);
     };
 
     const handleRemove = (index, fromApi) => {
@@ -107,8 +107,6 @@ const Edit = () => {
             setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
         }
     };
-
-
 
     const handleCategorySelect = (event) => {
         setCategory(event.target.value)
@@ -144,7 +142,11 @@ const Edit = () => {
 
         setSubmitLoader(true)
 
-        axios.post(`${API_URL}/edit-product/${params.name}`, payload)
+        axios.post(`${API_URL}/edit-product/${params.name}`, payload, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then(response => {
                 console.log(response)
                 setApiSuccess(true)
@@ -159,6 +161,10 @@ const Edit = () => {
                 }
                 if(error.response.status === 422) {
                     setError(error.response.data.errors)
+                    setSubmitLoader(false)
+                }
+                if(error.response.status === 403) {
+                    setApiError(true)
                     setSubmitLoader(false)
                 }
             })
@@ -334,15 +340,24 @@ const Edit = () => {
                                             )}
                                         </div>
                                         <div className="flex flex-col space-y-1 lg:w-2/3">
-                                            <div className="flex justify-between">
-                                                <label htmlFor="" className="text-gray-500">Papildus bildes</label>
-                                                <label htmlFor="multipleImg" className="underline text-blue-400 cursor-pointer hover:text-blue-600">Pievienot bildes</label>
+                                            <div className="flex justify-between sm:flex-row flex-col">
+                                                <div className="flex space-x-2 items-center">
+                                                    <label htmlFor="" className="text-gray-500">Papildus bildes</label>
+                                                    <div className="relative group">
+                                                        <FaInfoCircle className="text-xl text-gray-600 cursor-help"/>
+                                                        <div className="bg-gray-100 p-2 w-[15rem] left-[-100px] sm:left-auto rounded-xl absolute z-40 group-hover:visible invisible">
+                                                            <p>Pievienojot jaunas galerijas bildes vecās tiek dzēstas un aizstātas ar jaunām. Lai pievienotu vairākas bildes vienlaicīgi izvēlieties vairākas bildes nevis pievienojiet pa vienai bildei!</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <label htmlFor="multipleImg" className="underline text-blue-400 cursor-pointer hover:text-blue-600 mt-2 sm:mt-0">Pievienot bildes</label>
                                                 <input className="hidden" ref={fileInputRef} type="file" id="multipleImg" onChange={handleFileChange} multiple accept="image/*" />
                                             </div>
-                                            <div className="grid h-96 lg:grid-cols-4 lg:grid-rows-2 gap-2">
+                                            <div className="grid lg:grid-cols-4 lg:grid-rows-2 gap-2">
                                                 {previews.map((preview, index) => (
                                                     <div className="relative">
-                                                        <img className="object-cover h-full w-full" key={index} src={preview} alt={`Preview ${index}`} />
+                                                        <img className="object-contain h-60 w-full" key={index} src={preview} alt={`Preview ${index}`} />
                                                         <div className="absolute cursor-pointer flex items-center justify-center top-0 right-0 bg-white mt-2 mr-2 rounded-full h-6 w-6" onClick={() => handleRemove(index)}>
                                                             <GrClose />
                                                         </div>

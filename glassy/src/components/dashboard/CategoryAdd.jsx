@@ -21,6 +21,9 @@ const CategoryAdd = () => {
     const [categoryNameEng, setCategoryNameEng] = useState('')
     const [categoryNameRu, setCategoryNameRu] = useState('')
 
+    const token = localStorage.getItem('token')
+
+
     const API_URL = `${process.env.REACT_APP_API_URL}`
     const fetchData = () => {
         axios.get(`${API_URL}/category-data`)
@@ -44,7 +47,11 @@ const CategoryAdd = () => {
             category_name_ru: categoryNameRu
         }
 
-        axios.post(`${API_URL}/add-category`, payload)
+        axios.post(`${API_URL}/add-category`, payload, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then(response => {
                 setApiSuccess(true)
                 setMessage(response.data.success_msg)
@@ -63,13 +70,19 @@ const CategoryAdd = () => {
                 }
                 if(error.response.status === 422) {
                     setErrors(error.response.data.errors)
-
+                }
+                if(error.response.status === 403) {
+                    setApiError(true)
                 }
             })
         }
 
     const deleteCategory = async (categoryId) => {
-        axios.delete(`${API_URL}/delete-category/${categoryId}`)
+        axios.delete(`${API_URL}/delete-category/${categoryId}`, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then((response) => {
                 setMessage(response.data.message)
                 setApiSuccess(true)
@@ -80,6 +93,9 @@ const CategoryAdd = () => {
             })
             .catch((error) => {
                 if(error.response.status === 404) {
+                    setApiError(true)
+                }
+                if(error.response.status === 403) {
                     setApiError(true)
                 }
             })

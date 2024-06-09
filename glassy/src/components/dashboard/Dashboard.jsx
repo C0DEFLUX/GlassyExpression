@@ -16,6 +16,7 @@ const Dashboard = () => {
     const [apiSuccess, setApiSuccess] = useState(false)
     const success = localStorage.getItem('success')
     const [refresh, setRefresh] = useState(false);
+    const token = localStorage.getItem('token')
 
 
     if(success === 'true') {
@@ -43,7 +44,11 @@ const Dashboard = () => {
     }, [refresh])
 
     const handleDelete = async (id) => {
-        axios.delete(`${API_URL}/delete-product/${id}`)
+        axios.delete(`${API_URL}/delete-product/${id}`, {
+            headers: {
+                Authorization: token
+            }
+        })
             .then(response => {
                 setApiSuccess(true)
                 setRefresh(!refresh)
@@ -53,6 +58,9 @@ const Dashboard = () => {
             })
             .catch((error) => {
                 if(error.response.status === 404) {
+                    setApiError(true)
+                }
+                if(error.response.status === 403) {
                     setApiError(true)
                 }
             })

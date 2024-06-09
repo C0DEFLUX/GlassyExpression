@@ -17,6 +17,8 @@ import ChevUp from "../../assets/img/chev_up.svg";
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import axios from "axios";
+import {Loader} from "../Helpers";
 
 const loadLanguage = async (language) => {
     const response = await fetch(`/locales/${language}.json`);
@@ -26,6 +28,9 @@ const loadLanguage = async (language) => {
 const Page = () => {
 
     const navigate = useNavigate()
+    const API_URL = `${process.env.REACT_APP_API_URL}`
+    const [image, setImage] = useState('')
+    const [loader, setLoader] = useState(true)
 
     const openCatalog = () => {
         navigate(`/catalog`)
@@ -40,6 +45,17 @@ const Page = () => {
             setTranslations(data);
         };
 
+        const fetchData = async () => {
+            await axios.get(`${API_URL}/title-image`)
+                .then(response => {
+                    setImage(response.data[0].image_url)
+                    setLoader(false)
+                })
+                .catch(error => {
+                })
+        }
+
+        fetchData()
         fetchTranslations();
     }, [language]);
 
@@ -48,12 +64,15 @@ const Page = () => {
         setPreferredLanguage(newLanguage);
     };
 
-
     return (
         <>
             <Header currentLanguage={language} onChangeLanguage={handleChangeLanguage}/>
-            <div className="h-[90vh] relative">
-                <img className="h-full w-full object-cover brightness-[80%]" src={HeroImg} alt="dasda" />
+            <div className="h-[90vh] relative flex items-center justify-center">
+                {loader ? (
+                    <Loader/>
+                ):(
+                    <img className="h-full w-full object-cover brightness-[80%]" src={image} />
+                )}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center flex flex-col gap-6">
                     <h1 className="text-4xl font-semibold lg:text-6xl">{translations.hero_title}</h1>
                     <div className="flex justify-center gap-8">
