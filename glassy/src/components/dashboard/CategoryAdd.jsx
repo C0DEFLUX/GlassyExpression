@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ErrorPopUp, SuccessPopUp} from "../Helpers";
+import {ButtonLoader, ErrorPopUp, SuccessPopUp} from "../Helpers";
 import AdminHeader from "./AdminHeader";
 import axios from "axios";
 import Loader from "../Helpers/Loader";
@@ -14,12 +14,14 @@ const CategoryAdd = () => {
     const [errors, setErrors] = useState('')
 
     const [loader, setLoader] = useState(true)
+    const [submitLoader, setSubmitLoader] = useState(false)
     const [data, setData] = useState([])
     const [refresh, setRefresh] = useState(false);
 
     const [categoryNameLv, setCategoryNameLv] = useState('')
     const [categoryNameEng, setCategoryNameEng] = useState('')
     const [categoryNameRu, setCategoryNameRu] = useState('')
+
 
     const token = localStorage.getItem('token')
 
@@ -47,6 +49,8 @@ const CategoryAdd = () => {
             category_name_ru: categoryNameRu
         }
 
+        setSubmitLoader(true)
+
         axios.post(`${API_URL}/add-category`, payload, {
             headers: {
                 Authorization: token
@@ -60,6 +64,7 @@ const CategoryAdd = () => {
                 setCategoryNameRu('')
                 setErrors('')
                 setRefresh(!refresh)
+                setSubmitLoader(false)
                 setTimeout(() => {
                     setApiSuccess(false);
                 }, 5000);
@@ -67,12 +72,15 @@ const CategoryAdd = () => {
             .catch(error => {
                 if(error.response.status === 404) {
                     setApiError(true)
+                    setSubmitLoader(false)
                 }
                 if(error.response.status === 422) {
                     setErrors(error.response.data.errors)
+                    setSubmitLoader(false)
                 }
                 if(error.response.status === 403) {
                     setApiError(true)
+                    setSubmitLoader(false)
                 }
             })
         }
@@ -163,7 +171,13 @@ const CategoryAdd = () => {
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                    <button onClick={addCategory} className="admin-btn mt-2">Pievienot</button>
+                                    {submitLoader ? (
+                                        <button type="submit" className="admin-btn mt-4 ml-auto cursor-auto hover:blue-400">
+                                            <ButtonLoader/>
+                                        </button>
+                                    ):(
+                                        <button onClick={addCategory} className="admin-btn mt-2">Pievienot</button>
+                                    )}
                                 </div>
                             </div>
                             <div className={loader ? 'flex justify-center' : 'admin-content-table h-[28rem] overflow-scroll rounded-md' }>
