@@ -99,7 +99,7 @@ const ProductCatalog = () => {
                                 <img className="w-full h-[23rem] object-contain p-2 rounded-xl" src={item.main_img} alt=""/>
                                 <div className="flex items-center justify-between mt-3 p-2">
                                     <h1 className="bg-white text-lg font-semibold rounded-xl"><span className="opacity-50">{item.category[`${language}`]} / </span>{item[`product_title_${language}`]}</h1>
-                                    <button onClick={() => openProduct(item.product_title_lv)} className="admin-btn">{translations.catalog_btn_view}</button>
+                                    <button onClick={() => openProduct(item.id)} className="admin-btn">{translations.catalog_btn_view}</button>
                                 </div>
                             </div>
                         ))}

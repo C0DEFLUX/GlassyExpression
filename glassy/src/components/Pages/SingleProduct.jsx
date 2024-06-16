@@ -11,6 +11,7 @@ import img from "../../assets/img/about_img.jpg";
 import Fb from "../../assets/img/fb_icon.svg";
 import Ig from "../../assets/img/ig_icon.svg";
 import ChevUp from "../../assets/img/chev_up.svg";
+import {Loader} from "../Helpers";
 
 SwiperCore.use([Navigation ,Thumbs]);
 
@@ -31,11 +32,10 @@ const SingleProduct = () => {
 
     useEffect(() => {
         const fetchData = () => {
-            axios.get(`${API_URL}/product-by-name/${params.name}`)
+            axios.get(`${API_URL}/product-by-id/${params.id}`)
                 .then(response => {
                     setItem(response.data)
                     setLoader(false)
-                    console.log(response.data)
 
 
                 })
@@ -64,9 +64,9 @@ const SingleProduct = () => {
         <>
             <Header currentLanguage={language} onChangeLanguage={handleChangeLanguage}/>
             <div className="flex justify-center">
-                <div className="container flex lg:flex-row flex-col h-fit w-full mb-5 lg:space-x-10">
+                <div className="container flex justify-center lg:flex-row flex-col h-fit w-full mb-5 lg:space-x-10">
                     {loader ? (
-                        <div>Loading...</div>
+                        <Loader/>
                     ):(
                         <>
                             <div className="lg:w-1/2 w-full">
